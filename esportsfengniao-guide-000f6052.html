@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蜂鸟电竞 · 纯粹的电竞信息站</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #faf8f5;
+            font-family: 'Georgia', 'Noto Serif SC', 'Source Han Serif SC', serif;
+            color: #3a3530;
+            line-height: 1.8;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        .page {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        /* 头部 —— 安静的题头 */
+        .site-header {
+            border-bottom: 1px solid #e5ddd6;
+            padding-bottom: 1.5rem;
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        .site-header h1 {
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            color: #3e332b;
+        }
+
+        .site-header .sub {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #8a7e74;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            letter-spacing: 0.04em;
+        }
+
+        /* 文章卡片式主体 */
+        .post-card {
+            background: #fffffffa;
+            padding: 2.2rem 1.8rem 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03), 0 4px 20px rgba(100,80,60,0.04);
+            margin-bottom: 2.5rem;
+            transition: transform 0.1s ease;
+        }
+
+        .post-title {
+            font-size: 1.8rem;
+            font-weight: 500;
+            line-height: 1.3;
+            color: #2f2822;
+            margin-bottom: 0.7rem;
+        }
+
+        .post-meta {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-size: 0.85rem;
+            color: #9b8f84;
+            margin-bottom: 1.4rem;
+            letter-spacing: 0.02em;
+        }
+
+        .post-meta span {
+            margin-right: 1.2rem;
+        }
+
+        .post-summary {
+            font-size: 1.1rem;
+            color: #4f463e;
+            padding: 1rem 0 0.5rem 0;
+            border-top: 1px solid #f0e9e2;
+            margin-top: 0.2rem;
+        }
+
+        .post-summary p {
+            margin-bottom: 0.8rem;
+        }
+
+        .post-body p {
+            margin-bottom: 1.25rem;
+            text-indent: 2em;
+        }
+
+        .post-body p:first-of-type {
+            text-indent: 0;
+        }
+
+        /* 引用提示块 —— 温和的指引框 */
+        .insight-box {
+            background: #f2ede7;
+            border-left: 4px solid #b3a396;
+            padding: 1.3rem 1.5rem;
+            margin: 1.8rem 0;
+            border-radius: 0 10px 10px 0;
+            font-size: 0.98rem;
+            color: #3d362f;
+        }
+
+        .insight-box strong {
+            color: #4e3f34;
+            font-weight: 500;
+        }
+
+        .insight-box a {
+            color: #6d5b4c;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-color: #cbbeb1;
+            font-weight: 400;
+        }
+
+        .insight-box a:hover {
+            color: #2c241e;
+            text-decoration-color: #5f4f40;
+        }
+
+        /* 特征list —— 不用卡片用轻列表 */
+        .feature-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem 2rem;
+            margin: 1.5rem 0 1.8rem;
+            padding: 0;
+            list-style: none;
+        }
+
+        .feature-list li {
+            flex: 1 1 180px;
+            background: #fcf9f6;
+            padding: 0.9rem 1rem;
+            border-radius: 30px 12px 12px 30px;
+            font-size: 0.95rem;
+            border: 1px solid #ece3db;
+        }
+
+        .feature-list li::before {
+            content: "·";
+            color: #9b887b;
+            font-weight: bold;
+            margin-right: 0.4rem;
+        }
+
+        /* 场景段落 */
+        .scene-text {
+            background: #faf5f0;
+            padding: 1.6rem 1.6rem;
+            border-radius: 14px;
+            margin: 1.8rem 0;
+        }
+
+        .scene-text p {
+            margin-bottom: 0.9rem;
+            text-indent: 2em;
+        }
+
+        /* FAQ 摘要 —— 折叠感 */
+        .faq-mini {
+            margin-top: 2rem;
+            border-top: 1px dashed #ddd5cc;
+            padding-top: 1.8rem;
+        }
+
+        .faq-mini h3 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #483e35;
+            margin-bottom: 0.8rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1.2rem;
+        }
+
+        .faq-q {
+            font-weight: 500;
+            color: #3f352e;
+        }
+
+        .faq-q::before {
+            content: "Q: ";
+            color: #7f6c5d;
+        }
+
+        .faq-a {
+            margin-top: 0.2rem;
+            padding-left: 1.4rem;
+            color: #5b5047;
+            font-size: 0.95rem;
+        }
+
+        .faq-a a {
+            color: #6d5b4c;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-color: #d1c3b6;
+        }
+
+        .faq-a a:hover {
+            color: #2c241e;
+        }
+
+        /* 访问句 —— 放在文章末尾 */
+        .visit-note {
+            margin: 2.2rem 0 0.5rem;
+            padding: 1.2rem 1.5rem;
+            background: #f7f2ec;
+            border-radius: 30px;
+            text-align: center;
+            font-size: 1.02rem;
+            color: #3b332b;
+            border: 1px solid #e7ddd3;
+        }
+
+        .visit-note a {
+            color: #4f3f33;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #b6a494;
+            font-weight: 450;
+        }
+
+        .visit-note a:hover {
+            color: #1f1813;
+        }
+
+        /* 响应式 */
+        @media (max-width: 560px) {
+            body { padding: 1.2rem 0.8rem 3rem; }
+            .post-card { padding: 1.6rem 1.2rem; }
+            .post-title { font-size: 1.5rem; }
+            .feature-list li { flex: 1 1 100%; }
+            .site-header h1 { font-size: 1.8rem; }
+        }
+
+        @media (min-width: 900px) {
+            .post-card { padding: 2.8rem 2.8rem 3rem; }
+        }
+
+        /* 小装饰 */
+        hr {
+            border: none;
+            border-top: 1px solid #ede6de;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <header class="site-header">
+        <h1>蜂鸟电竞</h1>
+        <span class="sub">—— 只提供认识电竞的另一种视角</span>
+    </header>
+
+    <article class="post-card">
+        <h2 class="post-title">一眼认出，这里是什么地方</h2>
+        <div class="post-meta">
+            <span>阅读约 4 分钟</span>
+            <span>· 站点指南</span>
+        </div>
+
+        <div class="post-summary">
+            <p>很多第一次来到 <strong><a href="https://esportsfengniao.com" style="color:#4f3f33;text-decoration:underline;text-underline-offset:2px;">蜂鸟电竞</a></strong> 的人，都会在页面前停留两秒，然后问自己：<br>“这个网站，究竟是做什么的？”</p>
+        </div>
+
+        <div class="post-body">
+            <p>它不是新闻聚合站，也不是赛事直播平台，更不是炫耀数据的排行榜。它更像一本安静地摊开在桌面上的笔记本，把电竞世界里值得被记住的比赛、选手、战术和故事，用一种平实的语言写下来。</p>
+
+            <p>如果你曾在赛果速报的洪流里感到疲倦，或是对“电竞资讯”四个字产生过怀疑 —— 这里或许可以给你另一种节奏。没有弹窗横幅，没有浮夸标题，每一篇内容都试图绕过流量逻辑，直接回答：这场比赛为什么值得看？这个人为什么值得记住？</p>
+
+            <!-- 引用提示 -->
+            <div class="insight-box">
+                <strong>提示</strong> —— 站内所有内容都不追求第一时间发出，也不追逐每一个热点。比起“最新”，更在意“最值得”。如果你恰好认同这个观念，那么你很可能会喜欢这里的叙事方式。
+            </div>
+
+            <p>站点的内容大致分成三种：赛事复盘、选手侧写，以及偶尔的观察随笔。每一类都尽量避免使用“爆款”结构，不写过多个人情绪，也不堆砌专业术语来制造距离感。你可以把它理解成一个由电竞爱好者维护的微型刊物，更新不快，但每一篇都经过推敲。</p>
+
+            <!-- 特点列表 -->
+            <ul class="feature-list">
+                <li>赛事复盘 · 只选关键局</li>
+                <li>选手侧写 · 不只谈成绩</li>
+                <li>观察随笔 · 不蹭热度</li>
+                <li>更新时间 · 每周 1–2 篇</li>
+            </ul>
+
+            <!-- 一个使用场景 -->
+            <div class="scene-text">
+                <p>比如你刚刚错过了一场海外联赛的 BO5，不想看十分钟的赛事精华，也不想翻冗长的讨论帖。这时候打开 <a href="https://esportsfengniao.com" style="color:#4f3f33;text-decoration:underline;text-underline-offset:2px;">蜂鸟电竞</a> 的一篇复盘，十分钟读完，你就能知道那场比赛真正改变走向的三个回合，以及双方在决策上的取舍。没有多余的信息负担。</p>
+                <p style="margin-bottom:0;">同样地，如果你对某位选手的印象还停留在“很强”，但说不出强在哪里，侧写栏目可能会用两三个具体的对局片段，帮你建立更清晰的认知。</p>
+            </div>
+
+            <p>站内没有评论区，也没有用户注册入口。原因很简单 —— 创作者希望把精力全部放在内容本身，而不是运营互动。如果你读完后有想法，可以顺着页面底部的联系方式写一封邮件；如果没有，那也很好。</p>
+
+            <!-- FAQ 摘要 -->
+            <div class="faq-mini">
+                <h3>一些你可能想问的</h3>
+                <div class="faq-item">
+                    <div class="faq-q">这个网站盈利吗？</div>
+                    <div class="faq-a">不。目前没有任何广告或赞助，未来也不打算加入。纯粹出于兴趣维护。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">内容会不会很老？</div>
+                    <div class="faq-a">会覆盖近期赛事，但也会系统性地回顾过去两三年的经典对局。时效性不是第一标准。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">我该怎么找到特定比赛的内容？</div>
+                    <div class="faq-a">站内提供按游戏和赛季筛选的索引页。你也可以直接使用搜索功能，或者从首页的“归档”入口浏览。如果想先感受一下风格，直接去 <a href="https://esportsfengniao.com">蜂鸟电竞</a> 主页往下翻即可。</div>
+                </div>
+            </div>
+
+            <!-- 温和的访问句 -->
+            <div class="visit-note">
+                如果你愿意花十分钟，慢下来读一篇不赶时间的电竞文章，<br>
+                <a href="https://esportsfengniao.com">蜂鸟电竞</a> 已经在那里了。
+            </div>
+
+            <hr>
+
+            <p style="text-indent:0; font-size:0.9rem; color:#7b6f65; margin-top:0.5rem;">
+                以上是对这个站点的简要介绍。它不大，但每个字都经过斟酌。希望对你有所帮助。
+            </p>
+        </div>
+    </article>
+
+</div>
+</body>
+</html>
