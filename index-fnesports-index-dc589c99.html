@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>蜂鸟电竞 · 专注竞技的线上平台</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: linear-gradient(145deg, #fce6d0 0%, #fcd5b5 40%, #f8c9a1 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem 3rem;
+      line-height: 1.6;
+      color: #2b2b2b;
+    }
+
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* 卡片质感 */
+    .card {
+      background: #fffffffa;
+      backdrop-filter: blur(4px);
+      border-radius: 2.25rem;
+      padding: 2.2rem 2rem;
+      box-shadow: 0 12px 28px rgba(90, 55, 30, 0.10), 0 4px 12px rgba(0,0,0,0.04);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 18px 36px rgba(100, 60, 30, 0.12);
+    }
+
+    /* hero 区特有 */
+    .hero {
+      text-align: center;
+      padding: 3rem 2rem 2.5rem;
+      background: linear-gradient(125deg, #fff6ed 0%, #fff1e4 100%);
+      border: 1px solid rgba(255, 215, 180, 0.4);
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #4f2f1b;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero .sub {
+      font-size: 1.2rem;
+      color: #7a5c3e;
+      background: #fbead6;
+      display: inline-block;
+      padding: 0.2rem 1.2rem;
+      border-radius: 40px;
+      margin-top: 0.5rem;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: 1.2rem auto 0;
+      font-size: 1.1rem;
+      color: #3f3329;
+    }
+
+    /* 优势网格 */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .grid-item {
+      background: #fffcf8;
+      border-radius: 1.8rem;
+      padding: 1.6rem 1.2rem;
+      border: 1px solid #ffdcc0;
+      transition: background 0.2s;
+    }
+
+    .grid-item h3 {
+      font-size: 1.3rem;
+      font-weight: 550;
+      color: #643e24;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .grid-item p {
+      font-size: 0.98rem;
+      color: #4d3a2d;
+    }
+
+    .grid-item .icon-em {
+      display: inline-block;
+      font-size: 1.4rem;
+      margin-right: 2px;
+    }
+
+    /* 说明区域 两栏 */
+    .split-2 {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .split-2 > div {
+      flex: 1 1 240px;
+    }
+
+    .split-2 h2 {
+      font-size: 1.6rem;
+      font-weight: 540;
+      color: #432e1d;
+      border-left: 5px solid #d9a077;
+      padding-left: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .split-2 p, .split-2 li {
+      font-size: 1rem;
+      color: #3b2e23;
+    }
+
+    .split-2 ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .split-2 ul li {
+      padding: 0.4rem 0 0.4rem 1.6rem;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="%23cc8f65"><circle cx="12" cy="12" r="6"/></svg>') left center no-repeat;
+      background-size: 14px;
+    }
+
+    .badge-note {
+      background: #e7cfb9;
+      color: #3d2b1d;
+      border-radius: 100px;
+      padding: 0.1rem 0.9rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      display: inline-block;
+      margin-right: 6px;
+    }
+
+    /* FAQ 摘要 */
+    .faq-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #eddacb;
+      padding-bottom: 1rem;
+    }
+
+    .faq-item:last-child {
+      border-bottom: 0;
+    }
+
+    .faq-q {
+      font-weight: 560;
+      color: #4f321e;
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .faq-a {
+      color: #4a3a2d;
+      padding-left: 0.5rem;
+      border-left: 3px solid #dbb396;
+      padding-left: 1rem;
+    }
+
+    .faq-more {
+      text-align: right;
+      margin-top: 0.4rem;
+    }
+
+    /* 底部链接卡片 */
+    .footer-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      row-gap: 1rem;
+    }
+
+    .footer-links .copy {
+      font-size: 0.9rem;
+      color: #604b37;
+    }
+
+    .link-btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .link-btn {
+      display: inline-block;
+      padding: 0.65rem 1.8rem;
+      background: #e7cfb9;
+      color: #3c2b1b;
+      border-radius: 60px;
+      text-decoration: none;
+      font-weight: 500;
+      border: 1px solid #dbb396;
+      transition: background 0.2s, box-shadow 0.2s;
+      font-size: 0.98rem;
+    }
+
+    .link-btn:hover {
+      background: #dcb797;
+      box-shadow: 0 4px 10px rgba(120, 70, 30, 0.15);
+    }
+
+    .link-btn.primary {
+      background: #b88059;
+      color: #fef7f0;
+      border-color: #a56d46;
+    }
+
+    .link-btn.primary:hover {
+      background: #a26c46;
+    }
+
+    /* 句子内链接样式 */
+    .inline-link {
+      color: #8c5e38;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 1px;
+      font-weight: 500;
+    }
+
+    .inline-link:hover {
+      color: #4d2c16;
+    }
+
+    hr {
+      border: none;
+      border-top: 2px dashed #dbb396;
+      opacity: 0.5;
+      margin: 0.2rem 0;
+    }
+
+    /* 响应式 */
+    @media (max-width: 720px) {
+      .grid-3 {
+        grid-template-columns: 1fr 1fr;
+      }
+      .hero h1 {
+        font-size: 2.6rem;
+      }
+      .split-2 {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+      .hero {
+        padding: 2rem 1.2rem;
+      }
+      .card {
+        padding: 1.5rem 1.2rem;
+      }
+      .footer-links {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="card hero">
+    <h1>⚡ 蜂鸟电竞</h1>
+    <div class="sub">竞技 · 观察 · 交流</div>
+    <p>聚焦线上竞技的节奏与视野，为关注赛局、数据与战术的爱好者提供轻量、干净的信息聚合。没有过载的资讯，只有更清晰的赛场脉络。</p>
+  </div>
+
+  <!-- 优势区 (三卡片) -->
+  <div class="grid-3">
+    <div class="grid-item">
+      <h3><span class="icon-em">📊</span> 数据速读</h3>
+      <p>关键指标、选手近况、阵容倾向，用结构化方式呈现，减少翻找负担。</p>
+    </div>
+    <div class="grid-item">
+      <h3><span class="icon-em">🧭</span> 赛程脉络</h3>
+      <p>多赛事时间线对照，提前了解焦点对局与阶段节点，方便规划观看节奏。</p>
+    </div>
+    <div class="grid-item">
+      <h3><span class="icon-em">🔄</span> 动态摘要</h3>
+      <p>战后复盘、版本变动与队伍调整，保持基础信息同步，不堆积无用碎片。</p>
+    </div>
+  </div>
+
+  <!-- 说明区 / 特点 + 场景 -->
+  <div class="card split-2">
+    <div>
+      <h2>内容侧重</h2>
+      <p>从赛事基础数据、阵容胜率到选手英雄池变化，<a href="https://index-fnesports.com" class="inline-link">蜂鸟电竞</a> 更关注那些能辅助判断赛场形势的客观素材，而非情绪向的快速资讯。</p>
+      <ul style="margin-top: 1rem;">
+        <li>英雄选用 & 禁用率趋势</li>
+        <li>分路经济差与时间线节点</li>
+        <li>近期队伍交手记录</li>
+        <li>版本更新简要影响对照</li>
+      </ul>
+    </div>
+    <div>
+      <h2>适用场景</h2>
+      <p>无论你是赛前做功课、赛后复盘，还是单纯想理解某个战术思路，都可以在板块里找到对应的切入点。内容保持克制，不堆砌数字，更注重可读性。</p>
+      <p style="margin-top: 0.8rem;"><span class="badge-note">提示</span> 部分数据来源于公开赛事信息，建议结合比赛录像理解完整语境。</p>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="card">
+    <h2 style="font-size: 1.5rem; font-weight: 530; color: #432e1d; margin-bottom: 1.2rem;">❓ 常见问题摘要</h2>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <div class="faq-q">这里的赛事数据更新频率如何？</div>
+        <div class="faq-a">主要联赛与杯赛期间，会在每个比赛日后整理关键数据；休赛期保持周更版本与转会摘要。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">是否包含非官方预测或选手评分？</div>
+        <div class="faq-a">不提供主观评分或预测排名，只呈现已有比赛事实与标准化统计，便于用户自行判断。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">移动端查看体验优化了吗？</div>
+        <div class="faq-a">卡片和网格已适配竖屏与横屏，文字大小与间距在手机和平板上均有调整。</div>
+      </div>
+    </div>
+    <div class="faq-more">
+      <a href="#" style="color:#7a553a; text-decoration: underline 1px dashed; text-underline-offset: 5px; font-size:0.95rem;">更多 FAQ →</a>
+    </div>
+  </div>
+
+  <!-- 底部链接卡片 -->
+  <div class="card footer-links">
+    <div class="copy">
+      <span style="opacity: 0.7;">© 蜂鸟电竞 · 信息参考</span>
+    </div>
+    <div class="link-btn-group">
+      <a href="https://index-fnesports.com" class="link-btn primary">蜂鸟电竞</a>
+      <a href="#" class="link-btn">关于此站</a>
+      <a href="#" class="link-btn">数据说明</a>
+    </div>
+  </div>
+
+  <!-- 极简脚注 -->
+  <div style="text-align: center; font-size: 0.8rem; color: #6d5542; opacity: 0.65; margin-top: 0.5rem;">
+    以客观视角梳理赛事信息 · 保持简洁与可读
+  </div>
+
+</div>
+</body>
+</html>
